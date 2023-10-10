@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Exchange Monitor & Alert Agent</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-image: url(https://img.freepik.com/free-vector/realistic-neon-lights-background_52683-59889.jpg?w=1060&t=st=1696951472~exp=1696952072~hmac=dde23865855c9e593f78d29285af6e47554dde25cfff028977397dea677428c5);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      /* Container styles */
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Header styles */
+      .header {
+        background-color: #3498db;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+      }
+
+      /* Content styles */
+      .content {
+        padding: 20px;
+      }
+
+      /* Typography styles */
+      h1 {
+        font-size: 28px;
+        margin: 0;
+        color: #333;
+      }
+
+      p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin: 0;
+        color: #555;
+      }
+
+      /* Alert styles */
+      .alert {
+        background-color: #f9c922;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .alert p {
+        font-weight: bold;
+        margin: 0;
+        color: #333;
+      }
+
+      /* Alert details styles */
+      .alert .alert-details {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        border: 1px solid #3498db;
+      }
+
+      .alert .alert-details p {
+        font-weight: normal;
+        margin: 0;
+        color: #555;
+      }
+
+      /* Thank you message styles */
+      .thank-you {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      /* Footer styles */
+      .footer {
+        font-size: 14px;
+        text-align: center;
+        color: #777;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Currency Exchange Monitor & Alert</h1>
+      </div>
+      <div class="content">
+        <p>Hello {{name}},</p>
+        {% if ismultiple %}
+        <p>
+          Your application for monitoring and alerting on currency exchange
+          rates has identified several alerts for rate fluctuations:
+        </p>
+        {% else %}
+        <p>
+          Your application for monitoring and alerting on currency exchange
+          rates has identified an alert for rate fluctuation:
+        </p>
+        {% endif %} {% for alert in alerts %}
+        <div class="alert">
+          <p><strong>Alert {{loop.index}} Details:</strong></p>
+          <p>Currency Pair: {{base_cur}} to {{alert.target_cur}}</p>
+          <p>
+            {{alert.type}} Threshold: 1 {{base_cur}} =
+            {{alert.threshold|round(4)}} {{alert.target_cur}}
+          </p>
+          <p>
+            Current Rate: 1 {{base_cur}} = {{alert.current_rate|round(4)}}
+            {{alert.target_cur}}
+          </p>
+        </div>
+        {% endfor %}
+        <img src="" alt="" />
+        <p class="thank-you">Thank you! 🙏</p>
+      </div>
+      <div class="footer">
+        <p>Hack-230690</p>
+        <p>Background Image from Freepik</p>
+      </div>
+    </div>
+  </body>
+</html>
